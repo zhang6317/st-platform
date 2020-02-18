@@ -1,0 +1,25 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: server-registry
+  profiles:
+    active: dev
+  cloud:
+    inetutils:
+      preferred-networks: 127.0.0.1
+eureka:
+  server:
+    peer-node-read-timeout-ms: 3000
+    enable-self-preservation: true
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    # 优先使用IP地址方式进行注册服务
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
