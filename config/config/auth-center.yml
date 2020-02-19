@@ -15,7 +15,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://60.208.139.186:53306/db_profile-center
+    url: jdbc:mysql://106.13.235.77:53306/db_st_auth_center
     #    url: jdbc:mysql://172.17.0.1:3306/contract_print_prod
     username: root
     password: rootadmin
