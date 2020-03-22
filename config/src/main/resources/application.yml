@@ -10,7 +10,7 @@ spring:
       server:
         git:
           uri: https://github.com/zhang6317/st-platform.git #配置git仓库地址
-          searchPaths: config/config/{profile} #配置仓库路径
+          searchPaths: config/config/,'{profile}' #配置仓库路径
           username:
           password:
       label: master #配置仓库的分支
