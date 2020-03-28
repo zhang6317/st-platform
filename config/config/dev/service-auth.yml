@@ -27,7 +27,7 @@ spring:
     password: redispas
     host: 106.13.235.77
     port: 56379
-    database: 0
+    database: 1
 
 logging:
   level:

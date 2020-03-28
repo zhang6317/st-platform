@@ -17,6 +17,7 @@ spring:
           username:
           password:
       label: master #配置仓库的分支
+      profile: ${spring.profiles}
 eureka:
   instance:
     hostname: ${spring.cloud.client.ip-address}
