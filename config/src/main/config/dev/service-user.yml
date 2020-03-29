@@ -1,0 +1,44 @@
+server:
+  port: 8710
+feign:
+  hystrix:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.13.235.77:53306/db_st_user_center
+    #    url: jdbc:mysql://172.17.0.1:3306/contract_print_prod
+    username: root
+    password: rootadmin
+
+  redis:
+    password: redispas
+    host: 106.13.235.77
+    port: 56379
+    database: 1
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+logging:
+  level:
+    web: DEBUG
+    org:
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: DEBUG
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
