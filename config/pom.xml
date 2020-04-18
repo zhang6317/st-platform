@@ -34,31 +34,9 @@
                 </exclusion>
             </exclusions>
         </dependency>
-    </dependencies>
 
-    <profiles>
-        <profile>
-            <!--开发环境-->
-            <id>dev</id>
-            <properties>
-                <profileActive>dev</profileActive>
-            </properties>
-        </profile>
-        <profile>
-            <!--测试环境-->
-            <id>test</id>
-            <properties>
-                <profileActive>test</profileActive>
-            </properties>
-        </profile>
-        <profile>
-            <!--正式环境-->
-            <id>prod</id>
-            <properties>
-                <profileActive>prod</profileActive>
-            </properties>
-        </profile>
-    </profiles>
+
+    </dependencies>
 
     <build>
         <plugins>
