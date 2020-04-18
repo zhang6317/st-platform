@@ -1,39 +1,0 @@
-
-?squid:S1148%"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
-Tsquid:S3878#"8Remove this array creation and simply pass the elements.(Šêß¨øÿÿÿÿ
-Qsquid:S11330"5Do not forget to remove this deprecated code someday.(Œ™ıøÿÿÿÿ
-Usquid:MissingDeprecatedCheck0"(Add the missing @deprecated Javadoc tag.(Œ™ıøÿÿÿÿ
-Ksquid:S11335"5Do not forget to remove this deprecated code someday.(‘İ¹&
-Osquid:MissingDeprecatedCheck5"(Add the missing @deprecated Javadoc tag.(‘İ¹&
-Qsquid:S1133:"5Do not forget to remove this deprecated code someday.(‹‹°ôùÿÿÿÿ
-Usquid:MissingDeprecatedCheck:"(Add the missing @deprecated Javadoc tag.(‹‹°ôùÿÿÿÿ
-Ksquid:S1133?"5Do not forget to remove this deprecated code someday.(ÜŠ
-Osquid:MissingDeprecatedCheck?"(Add the missing @deprecated Javadoc tag.(ÜŠ
-Qsquid:S1133D"5Do not forget to remove this deprecated code someday.(¢­Ç³ÿÿÿÿÿ
-Usquid:MissingDeprecatedCheckD"(Add the missing @deprecated Javadoc tag.(¢­Ç³ÿÿÿÿÿ
-Lsquid:S1133I"5Do not forget to remove this deprecated code someday.(¦ÏØ«
-Psquid:MissingDeprecatedCheckI"(Add the missing @deprecated Javadoc tag.(¦ÏØ«
-Qsquid:S1133N"5Do not forget to remove this deprecated code someday.(¶‹šŠıÿÿÿÿ
-Usquid:MissingDeprecatedCheckN"(Add the missing @deprecated Javadoc tag.(¶‹šŠıÿÿÿÿ
-Lsquid:S1133^"5Do not forget to remove this deprecated code someday.(Ôñ…½
-Psquid:MissingDeprecatedCheck^"(Add the missing @deprecated Javadoc tag.(Ôñ…½
-Ksquid:S1133f"5Do not forget to remove this deprecated code someday.(€‰»
-Osquid:MissingDeprecatedCheckf"(Add the missing @deprecated Javadoc tag.(€‰»
-Qsquid:S1133k"5Do not forget to remove this deprecated code someday.(Ö¨³Ùşÿÿÿÿ
-Usquid:MissingDeprecatedCheckk"(Add the missing @deprecated Javadoc tag.(Ö¨³Ùşÿÿÿÿ
-Rsquid:S1133 "5Do not forget to remove this deprecated code someday.(ìÃ²¾ÿÿÿÿÿ
-Vsquid:MissingDeprecatedCheck "(Add the missing @deprecated Javadoc tag.(ìÃ²¾ÿÿÿÿÿ
-Msquid:S1133¥"5Do not forget to remove this deprecated code someday.(ÁÜ«µ
-Qsquid:MissingDeprecatedCheck¥"(Add the missing @deprecated Javadoc tag.(ÁÜ«µ
-Rsquid:S1133ª"5Do not forget to remove this deprecated code someday.(£ŸâÄüÿÿÿÿ
-Vsquid:MissingDeprecatedCheckª"(Add the missing @deprecated Javadoc tag.(£ŸâÄüÿÿÿÿ
-Msquid:S1133¯"5Do not forget to remove this deprecated code someday.(û¥–˜
-Qsquid:MissingDeprecatedCheck¯"(Add the missing @deprecated Javadoc tag.(û¥–˜
-Rsquid:S1133´"5Do not forget to remove this deprecated code someday.(°Êà±şÿÿÿÿ
-Vsquid:MissingDeprecatedCheck´"(Add the missing @deprecated Javadoc tag.(°Êà±şÿÿÿÿ
-Rsquid:S1133¹"5Do not forget to remove this deprecated code someday.(áºí²şÿÿÿÿ
-Vsquid:MissingDeprecatedCheck¹"(Add the missing @deprecated Javadoc tag.(áºí²şÿÿÿÿ
-Lsquid:S1133¾"5Do not forget to remove this deprecated code someday.(ßèã
-Psquid:MissingDeprecatedCheck¾"(Add the missing @deprecated Javadoc tag.(ßèã
-Qsquid:S1161Ê":Add the "@Override" annotation above this method signature(ú¡­,
-Wsquid:S1161Ñ":Add the "@Override" annotation above this method signature(À–®»ÿÿÿÿÿ
