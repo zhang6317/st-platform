@@ -1,7 +1,5 @@
 package com.st.common.config;
 
-import org.redisson.Redisson;
-import org.redisson.api.RedissonClient;
 
 /**
  * @author: zhangH

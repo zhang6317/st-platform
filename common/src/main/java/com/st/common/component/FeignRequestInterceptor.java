@@ -2,7 +2,6 @@ package com.st.common.component;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
-import org.springframework.session.web.http.SessionRepositoryFilter;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -33,7 +32,6 @@ public class FeignRequestInterceptor implements RequestInterceptor {
             requestTemplate.header(name, request.getHeader(name));
         }
         if(!request.isRequestedSessionIdValid()){
-            request.setAttribute(SessionRepositoryFilter.INVALID_SESSION_ID_ATTR,null);
             requestTemplate.header("cookie","SESSION="+request.getSession().getId());
         }
     }

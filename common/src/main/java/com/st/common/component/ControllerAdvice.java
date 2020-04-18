@@ -1,17 +1,19 @@
 package com.st.common.component;
 
 import com.alibaba.fastjson.JSON;
-import com.movie.common.pojo.DataVo;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.st.common.pojo.DataVo;
+import com.st.common.util.BizException;
+import com.st.common.util.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpInputMessage;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdvice;
 
 
@@ -28,7 +30,7 @@ import java.lang.reflect.Type;
  * @description: 打印返回日志用
  */
 @Slf4j
-@RestControllerAdvice(basePackages = "com.movie")
+@RestControllerAdvice
 public class ControllerAdvice implements RequestBodyAdvice {
 
     private final Logger logger = LoggerFactory.getLogger(ControllerAdvice.class);
@@ -42,13 +44,29 @@ public class ControllerAdvice implements RequestBodyAdvice {
      */
     @ExceptionHandler(value = Exception.class)
     public void errorHandler(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Exception ex) throws IOException {
-        /*  使用response返回    */
-        httpServletResponse.setStatus(HttpStatus.OK.value()); //设置状态码
-        httpServletResponse.setCharacterEncoding("UTF-8"); //避免乱码
-        httpServletResponse.setHeader("Cache-Control", "no-cache, must-revalidate");
-        httpServletResponse.setContentType(MediaType.APPLICATION_JSON_VALUE); //设置ContentType
-        DataVo dataVo = BizException.toDataVo(ex);
-        httpServletResponse.getWriter().write(JSON.toJSONString(dataVo));
+        DataVo<Object> dataVo = null;
+        if (ex instanceof BizException){
+            dataVo = ((BizException) ex).toDataVo();
+        } else if(ex instanceof NoHandlerFoundException){
+            dataVo = new DataVo<>();
+            dataVo.setCode(ResultEnum.PATH_LACK_ERROT.code());
+            dataVo.setMessage(ResultEnum.PATH_LACK_ERROT.message());
+            httpServletResponse.setStatus(404);
+        } else {
+            dataVo = new DataVo<>();
+            dataVo.setCode(ResultEnum.FAIL.code());
+            dataVo.setMessage(ResultEnum.FAIL.message());
+        }
+
+        String result = JSON.toJSONString(dataVo, SerializerFeature.PrettyFormat, SerializerFeature.WriteNullListAsEmpty,
+                SerializerFeature.DisableCircularReferenceDetect,
+                SerializerFeature.WriteNullStringAsEmpty);
+
+        // 出参日志
+        log.error("{}【返回异常信息】 type: {} {} {}", System.getProperty("line.separator"), ex.getClass(), System.getProperty("line.separator"), result);
+        httpServletResponse.setContentType("application/json;charset=utf-8");
+        httpServletResponse.getWriter().write(result);
+        httpServletResponse.getWriter().flush();
     }
 
     @Override

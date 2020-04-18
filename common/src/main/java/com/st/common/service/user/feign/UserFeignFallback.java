@@ -1,15 +1,14 @@
 package com.st.common.service.user.feign;
 
-import com.movie.common.component.FallBack;
-import com.movie.common.pojo.DataVo;
-import com.movie.common.service.profile.feign.ProfileFeignFallBack;
-import com.movie.common.service.user.pojo.User;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.cloud.openfeign.FeignClient;
+import com.st.common.pojo.DataVo;
+import com.st.common.pojo.PageData;
+import com.st.common.service.auth.pojo.Menu;
+import com.st.common.service.user.pojo.User;
+import com.st.common.service.user.pojo.UserParam;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 /**
  * @author: zhangH
@@ -17,10 +16,32 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @description:
  */
 @Component
-public class UserFeignFallback extends FallBack implements UserFeign {
+public class UserFeignFallback implements UserFeign {
+
 
     @Override
-    public DataVo<User> userLogin(Integer channelId, String code, String encryptedData, String ivStr) throws Exception {
-        return defaultFallBack();
+    public DataVo<User> getUserInfo() {
+        return null;
+    }
+
+    @GetMapping("loginByMobileAndPassword")
+    @Override
+    public DataVo<Object> loginByMobileAndPassword(String mobile, String password) {
+        return null;
+    }
+
+    @Override
+    public DataVo<Object> logout() {
+        return null;
+    }
+
+    @Override
+    public DataVo<List<Menu>> getUserMenus() {
+        return null;
+    }
+
+    @Override
+    public DataVo<PageData<User>> getUserList(UserParam userParam) {
+        return null;
     }
 }

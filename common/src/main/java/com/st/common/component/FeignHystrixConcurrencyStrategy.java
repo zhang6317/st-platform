@@ -20,6 +20,10 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+
+/**
+ * @author zhang
+ */
 @Slf4j
 public class FeignHystrixConcurrencyStrategy extends HystrixConcurrencyStrategy {
 

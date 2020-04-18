@@ -1,5 +1,6 @@
 package com.st.common.pojo;
 
+import com.st.common.util.ResultEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,16 +16,10 @@ import java.io.Serializable;
 @Data
 public class DataVo<T> implements Serializable {
 
-    public static DataVo ok() {
+    public static DataVo result(ResultEnum resultEnum) {
         DataVo dataVO = new DataVo();
-        dataVO.setCode(0);
-        dataVO.setMessage("success");
-        return dataVO;
-    }
-
-    public static DataVo error(int code) {
-        DataVo dataVO = new DataVo();
-        dataVO.setCode(code);
+        dataVO.setCode(resultEnum.code());
+        dataVO.setMessage(resultEnum.message());
         return dataVO;
     }
 

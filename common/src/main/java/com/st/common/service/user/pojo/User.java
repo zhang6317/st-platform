@@ -10,6 +10,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author: zhangH
@@ -25,14 +26,15 @@ public class User implements Serializable {
     @ApiModelProperty(notes = "用户id")
     private Long userId;
 
-    @ApiModelProperty(notes = "渠道id")
-    private Integer channelId;
-
     @ApiModelProperty(notes = "渠道用户id1")
     private String channelUserId1;
 
     @ApiModelProperty(notes = "渠道用户id2")
     private String channelUserId2;
+
+    @ApiModelProperty(notes = "用户角色id")
+    @TableField(exist = false)
+    private List<Integer> roleIds;
 
     @ApiModelProperty(notes = "昵称")
     private String nickName;
@@ -42,6 +44,12 @@ public class User implements Serializable {
 
     @ApiModelProperty(notes = "身份证号")
     private String idCardNo;
+
+    @ApiModelProperty(notes = "手机号")
+    private String mobile;
+
+    @ApiModelProperty(notes = "密码 ")
+    private String password;
 
     @ApiModelProperty(notes = "语言")
     private String language;

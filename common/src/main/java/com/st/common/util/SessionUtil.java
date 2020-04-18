@@ -26,4 +26,11 @@ public class SessionUtil {
         session.setAttribute(sessionName,bean);
     }
 
+    public static void clear(){
+        HttpSession session = ((ServletRequestAttributes) (RequestContextHolder.currentRequestAttributes())).getRequest().getSession();
+        session.invalidate();
+    }
+
+
+
 }

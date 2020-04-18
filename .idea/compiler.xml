@@ -7,21 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common" />
+        <module name="service-user" />
         <module name="registry" />
+        <module name="common" />
+        <module name="service-auth" />
+        <module name="gateway-manager" />
+        <module name="config" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="common" target="1.8" />
-      <module name="parent" target="1.8" />
-      <module name="registry" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common" options="-parameters" />
-      <module name="parent" options="-parameters" />
+      <module name="config" options="-parameters" />
+      <module name="gateway-manager" options="-parameters" />
       <module name="registry" options="-parameters" />
+      <module name="service-auth" options="-parameters" />
+      <module name="service-user" options="-parameters" />
     </option>
   </component>
 </project>

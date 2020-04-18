@@ -1,27 +1,25 @@
 package com.st.common.component;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.movie.common.pojo.DataVo;
-import com.movie.common.util.StringUtil;
+import com.st.common.custom.RequestWrapper;
+import com.st.common.custom.ResponseWrapper;
+import com.st.common.util.BizException;
+import com.st.common.util.ResultEnum;
+import com.st.common.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.CharSet;
 import org.apache.commons.lang3.StringUtils;
-import springfox.documentation.spring.web.json.Json;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.BindException;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 
 /**
+ * @author zhang
  * controller全局异常处理  日志打印
  */
 @WebFilter(filterName = "logFilter")
@@ -29,6 +27,7 @@ import java.util.Enumeration;
 public class RequestFilter implements Filter {
 
 
+    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
     }
@@ -42,7 +41,7 @@ public class RequestFilter implements Filter {
      * @throws IOException
      * @throws ServletException
      */
-//    @Override
+    @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
@@ -88,29 +87,22 @@ public class RequestFilter implements Filter {
         }
 
         String result = null;
-        try {
-            filterChain.doFilter(requestWrapper, responseWrapper);
-            result = new String(responseWrapper.getResponseData(), StringUtil.DEFAULT_CHARTSET);
 
-            if (StringUtil.isBlank(result)) {
-                throw new BizException(BizException.DEFAULT_RROR, "返回信息为空");
-            }
+        filterChain.doFilter(requestWrapper, responseWrapper);
+        result = new String(responseWrapper.getResponseData(), StringUtil.DEFAULT_CHARTSET);
 
-            // 当日志长度小于4096时打印日志
-            if (result.length() < 4096) {
-                log.info("{}【返回信息】 status: {} {} {}", System.getProperty("line.separator"), response.getStatus(), System.getProperty("line.separator"), result);
-            } else {
-                log.info("{}【返回信息】 请求体超过4096 略过返回日志", System.getProperty("line.separator"));
-            }
-
-        } catch (Exception e) {
-            DataVo dataVo = BizException.toDataVo(e);
-            result = JSON.toJSONString(dataVo, SerializerFeature.PrettyFormat, SerializerFeature.WriteNullListAsEmpty,
-                    SerializerFeature.DisableCircularReferenceDetect,
-                    SerializerFeature.WriteNullStringAsEmpty);
-            // 出参日志
-            log.error("{}【返回异常信息】 status: {} {} {}", System.getProperty("line.separator"), response.getStatus(), System.getProperty("line.separator"), result);
+        if (StringUtil.isBlank(result)) {
+            throw new BizException(ResultEnum.FAIL, "返回信息为空");
         }
+
+        // 当日志长度小于4096时打印日志
+        final int size = 4096;
+        if (result.length() < size) {
+            log.info("{}【返回信息】 status: {} {} {}", System.getProperty("line.separator"), response.getStatus(), System.getProperty("line.separator"), result);
+        } else {
+            log.info("{}【返回信息】 请求体超过4096 略过返回日志", System.getProperty("line.separator"));
+        }
+
 
         ServletOutputStream outputStream = response.getOutputStream();
         // 真正返回数据
@@ -119,6 +111,7 @@ public class RequestFilter implements Filter {
         outputStream.close();
     }
 
+    @Override
     public void destroy() {
 
     }
