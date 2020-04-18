@@ -2,9 +2,7 @@ server:
   port: 8761
 spring:
   application:
-    name: server-registry
-  profiles:
-    active: dev
+    name: server_registry
   cloud:
     inetutils:
       preferred-networks: 127.0.0.1
